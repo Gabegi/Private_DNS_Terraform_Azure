@@ -8,5 +8,14 @@ terraform {
 }
 
 provider "azurerm" {
-  # Configuration options
+  subscription_id = var.subscription_id
+  features {
+    
+  }
+}
+
+
+resource "azurerm_resource_group" "rg" {
+  name     = "dns-rg"
+  location = "West Europe"
 }
