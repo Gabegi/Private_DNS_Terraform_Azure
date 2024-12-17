@@ -1,5 +1,5 @@
 
 variable "subscription_id" {
     type        = string
-  description = "Sub"
+  description = "Subscription ID"
 }
