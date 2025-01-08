@@ -1,7 +1,11 @@
 # Private_DNS_Terraform
 Private Azure DNS Zone in Terraform
 
-This repo showcases a simple example on how to set-up a private DNS Zone in Azure using Terraform Code
+This repo showcases a simple example on how to set-up a private DNS Zone in Azure using Terraform Code.
+
+You need to add a folder vars and add the tfvars file in there.
+
+Potential improvement is to use modules
 
 
 Navigate to the repo and run:
