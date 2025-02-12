@@ -2,7 +2,7 @@ resource "azurerm_private_endpoint" "app1_pe" {
   name                = "app1-pe"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  subnet_id           = azurerm_subnet.subnet1.id
+  subnet_id           = azurerm_subnet.subnet3.id
 
   private_service_connection {
     name                           = "app1-privateserviceconnection"
