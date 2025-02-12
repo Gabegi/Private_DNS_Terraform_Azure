@@ -10,6 +10,11 @@ resource "azurerm_private_endpoint" "app1_pe" {
     subresource_names              = ["sites"]
     is_manual_connection           = false
   }
+
+    private_dns_zone_group {
+    name                 = "example-dns-zone-group"
+    private_dns_zone_ids = [azurerm_private_dns_zone.private_dns.id]
+  }
 }
 
 resource "azurerm_private_endpoint" "app2_pe" {
@@ -23,5 +28,10 @@ resource "azurerm_private_endpoint" "app2_pe" {
     private_connection_resource_id = azurerm_linux_function_app.app2.id
     subresource_names              = ["sites"]
     is_manual_connection           = false
+  }
+
+    private_dns_zone_group {
+    name                 = "example-dns-zone-group"
+    private_dns_zone_ids = [azurerm_private_dns_zone.private_dns.id]
   }
 }
