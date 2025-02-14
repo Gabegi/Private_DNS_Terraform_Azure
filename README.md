@@ -4,7 +4,7 @@ This repo showcases a simple example on how to set-up a private DNS Zone in Azur
 You need to add a folder vars and add the tfvars file in there.
 
 Here's what we are building.
-
+![Architecture](architecture.jpeg)
 
 Potential improvement is to use modules
 
