@@ -15,3 +15,12 @@ Navigate to the repo and run:
 - terraform apply -auto-approve -var-file="vars/values.tfvars" 
 - terraform destroy -var-file="vars/values.tfvars"
 
+For testing:
+- navigate to the app repo and run
+```
+cd FunctionApp1  
+func azure functionapp publish dns-app1 --csproj "FunctionApp1/FunctionApp1.csproj"
+
+
+```
+
