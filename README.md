@@ -19,8 +19,7 @@ For testing:
 - navigate to the app repo and run
 ```
 cd FunctionApp1  
-func azure functionapp publish dns-app1 --csproj "FunctionApp1/FunctionApp1.csproj"
-
+func azure functionapp publish dns-app1 --csproj "FunctionAppCall.csproj"
 
 ```
 
