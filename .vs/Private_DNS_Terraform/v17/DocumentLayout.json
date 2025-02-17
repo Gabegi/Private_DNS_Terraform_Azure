@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Devoteam\\Desktop\\Projects\\00_Apps\\14_PrivateDNS\\Private_DNS_Terraform\\src\\",
+  "WorkspaceRootPath": "C:\\Users\\Devoteam\\Desktop\\Projects\\00_Apps\\14_PrivateDNS\\Private_DNS_Terraform\\",
   "Documents": [],
   "DocumentGroupContainers": [
     {
@@ -8,7 +8,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 233,
+          "DockedWidth": 187,
           "SelectedChildIndex": -1,
           "Children": [
             {
