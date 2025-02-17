@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-public static class CallFunctionApp
+public static class CallFunc
 {
     private static readonly HttpClient httpClient = new HttpClient();
 

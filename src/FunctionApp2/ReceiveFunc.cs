@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Functions.Worker;
 
-public static class Function2
+public static class ReceiveFunc
 {
     [Function("ReceiveFunc")]
     public static async Task<IActionResult> Run(
