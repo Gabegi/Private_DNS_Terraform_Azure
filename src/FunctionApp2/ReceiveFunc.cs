@@ -5,7 +5,7 @@ using Microsoft.Azure.Functions.Worker;
 
 public static class Function2
 {
-    [Function("Function2")]
+    [Function("ReceiveFunc")]
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req,
         ILogger log)
