@@ -17,7 +17,7 @@ resource "azurerm_service_plan" "asp" {
 }
 
 # Function App 1
-resource "azurerm_linux_function_app" "app1" {
+resource "azurerm_windows_function_app" "app1" {
   name                = "dns-app1"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
@@ -28,12 +28,16 @@ resource "azurerm_linux_function_app" "app1" {
 
   virtual_network_subnet_id = azurerm_subnet.subnet1.id
 
-  site_config {}
+  site_config {
+    application_stack {
+      dotnet_version = "8.0"
+    }
+}
 }
 
 
 # Function App 2
-resource "azurerm_linux_function_app" "app2" {
+resource "azurerm_windows_function_app" "app2" {
   name                = "dns-app2"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
@@ -45,5 +49,9 @@ resource "azurerm_linux_function_app" "app2" {
     virtual_network_subnet_id = azurerm_subnet.subnet2.id
 
 
-  site_config {}
+  site_config {
+    application_stack {
+      dotnet_version = "8.0"
+    }
+}
 }
