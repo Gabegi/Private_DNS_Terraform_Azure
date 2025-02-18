@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Application_2": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7218",
+      "launchBrowser": false
+    }
+  }
+}
