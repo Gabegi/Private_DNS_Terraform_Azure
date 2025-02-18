@@ -1,24 +1,16 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Functions.Worker;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Azure.Functions.Worker;
 
-namespace Application_2
+public static class ReceiveFunc
 {
-    public class Function1
+    [Function("ReceiveCall")]
+    public static async Task<IActionResult> Run(
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req,
+        ILogger log)
     {
-        private readonly ILogger<Function1> _logger;
-
-        public Function1(ILogger<Function1> logger)
-        {
-            _logger = logger;
-        }
-
-        [Function("Function1")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
-        {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
-        }
+        log.LogInformation("Function App 2 triggered.");
+        return new OkObjectResult("Hello from Function App 2!");
     }
 }
