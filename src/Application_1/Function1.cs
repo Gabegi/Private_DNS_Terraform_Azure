@@ -3,22 +3,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-namespace Application_1
+public static class CallFunc
 {
-    public class Function1
+    private static readonly HttpClient httpClient = new HttpClient();
+
+    [Function("CallApp2")]
+    public static async Task<IActionResult> Run(
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req,
+        ILogger log)
     {
-        private readonly ILogger<Function1> _logger;
+        log.LogInformation("Triggered Function App 1. Calling Function App 2...");
 
-        public Function1(ILogger<Function1> logger)
+        string functionApp2Url = "https://dns-app2.azurewebsites.net/api/Function2"; // Update with the correct function name
+
+        try
         {
-            _logger = logger;
+            HttpResponseMessage response = await httpClient.GetAsync(functionApp2Url);
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            log.LogInformation($"Response from Function App 2: {responseBody}");
+            return new OkObjectResult($"Function App 2 responded with: {responseBody}");
         }
-
-        [Function("Function1")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
+        catch (HttpRequestException ex)
         {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
+            log.LogError($"Error calling Function App 2: {ex.Message}");
+            return new StatusCodeResult(500);
         }
     }
 }
