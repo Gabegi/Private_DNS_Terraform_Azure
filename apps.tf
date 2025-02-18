@@ -30,7 +30,7 @@ resource "azurerm_windows_function_app" "app1" {
 
   site_config {
     application_stack {
-      dotnet_version = "8.0"
+      dotnet_version = "v8.0"
     }
 }
 }
@@ -51,7 +51,7 @@ resource "azurerm_windows_function_app" "app2" {
 
   site_config {
     application_stack {
-      dotnet_version = "8.0"
+      dotnet_version = "v8.0"
     }
 }
 }

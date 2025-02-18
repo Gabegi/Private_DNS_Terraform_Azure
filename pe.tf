@@ -6,7 +6,7 @@ resource "azurerm_private_endpoint" "app1_pe" {
 
   private_service_connection {
     name                           = "app1-privateserviceconnection"
-    private_connection_resource_id = azurerm_linux_function_app.app1.id
+    private_connection_resource_id = azurerm_windows_function_app.app1.id
     subresource_names              = ["sites"]
     is_manual_connection           = false
   }
@@ -25,7 +25,7 @@ resource "azurerm_private_endpoint" "app2_pe" {
 
   private_service_connection {
     name                           = "app2-privateserviceconnection"
-    private_connection_resource_id = azurerm_linux_function_app.app2.id
+    private_connection_resource_id = azurerm_windows_function_app.app2.id
     subresource_names              = ["sites"]
     is_manual_connection           = false
   }
