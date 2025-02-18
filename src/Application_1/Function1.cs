@@ -14,7 +14,7 @@ public static class CallFunc
     {
         log.LogInformation("Triggered Function App 1. Calling Function App 2...");
 
-        string functionApp2Url = "https://dns-app1.azurewebsites.net/api/ReceiveCall?code=nhDTOYqFlDK4GpdwhQjkzaVBmz1mU3TpuCbWrxoWqsHBAzFucyDloA=="; // Update with the correct function name
+        string functionApp2Url = "https://dns-app1.azurewebsites.net/api/ReceiveCall"; // Update with the correct function name
 
         try
         {
