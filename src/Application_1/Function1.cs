@@ -14,7 +14,11 @@ public static class CallFunc
     {
         log.LogInformation("Triggered Function App 1. Calling Function App 2...");
 
+<<<<<<< HEAD
         string functionApp2Url = "https://dns-app1.azurewebsites.net/api/ReceiveCall"; // Update with the correct function name
+=======
+        string functionApp2Url = "https://dns-app2.azurewebsites.net/api/Function2"; // Update with the correct function name
+>>>>>>> parent of 0c4a2a0 (building apps)
 
         try
         {

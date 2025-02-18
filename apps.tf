@@ -32,9 +32,6 @@ resource "azurerm_windows_function_app" "app1" {
     application_stack {
       dotnet_version = "v8.0"
     }
-    cors {
-      allowed_origins = ["https://portal.azure.com"]
-    }
 }
 }
 
@@ -55,9 +52,6 @@ resource "azurerm_windows_function_app" "app2" {
   site_config {
     application_stack {
       dotnet_version = "v8.0"
-    }
-    cors {
-      allowed_origins = ["https://portal.azure.com"]
     }
 }
 }
