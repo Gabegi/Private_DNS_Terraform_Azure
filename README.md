@@ -23,3 +23,5 @@ func azure functionapp publish dns-app2
 
 ```
 
+Or publish directly in Visual Studio
+
