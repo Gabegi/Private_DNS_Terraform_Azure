@@ -11,7 +11,8 @@ public static class CallFunc
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
     {
-        string functionApp2Url = "https://dns-app2.azurewebsites.net/api/ReceiveCall"; 
+        string functionApp2Url = "https://dns-app2.azurewebsites.net/api/ReceiveCall?code=xxxx";
+        // "http://localhost:7218/api/ReceiveCall";
 
         try
         {
