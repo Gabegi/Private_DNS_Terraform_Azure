@@ -31,7 +31,6 @@ resource "azurerm_windows_function_app" "app1" {
   site_config {
     application_stack {
       dotnet_version              = "v8.0" 
-      use_custom_runtime          = false 
       use_dotnet_isolated_runtime = true 
     }
     cors {
@@ -66,7 +65,6 @@ resource "azurerm_windows_function_app" "app2" {
   site_config {
     application_stack {
               dotnet_version              = "v8.0" 
-              use_custom_runtime          = false 
               use_dotnet_isolated_runtime = true 
     }
 
