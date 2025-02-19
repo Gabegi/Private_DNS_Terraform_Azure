@@ -73,4 +73,8 @@ resource "azurerm_windows_function_app" "app2" {
       support_credentials = true
     }
 }
+app_settings = {
+    "WEBSITE_RUN_FROM_PACKAGE"          = "1"
+    "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1"
+  }
 }
