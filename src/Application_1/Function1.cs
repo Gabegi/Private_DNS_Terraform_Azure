@@ -12,7 +12,7 @@ public static class CallFunc
         [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req,
         ILogger log)
     {
-        log.LogInformation("Triggered Function App 1. Calling Function App 2...");
+        log.LogInformation("Triggered Function App 1. Calling Function App 2");
 
         string functionApp2Url = "https://dns-app1.azurewebsites.net/api/ReceiveCall"; // Update with the correct function name
         //string functionApp2Url = "https://dns-app2.azurewebsites.net/api/Function2"; // Update with the correct function name
