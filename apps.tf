@@ -61,5 +61,12 @@ resource "azurerm_windows_function_app" "app2" {
     application_stack {
       dotnet_version = "v8.0"
     }
+
+    cors {
+      allowed_origins = [
+        "https://portal.azure.com"
+      ]
+      support_credentials = true
+    }
 }
 }
