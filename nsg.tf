@@ -33,12 +33,12 @@ resource "azurerm_network_security_group" "nsg-2" {
 # Associate NSG with PE Subnet
 resource "azurerm_subnet_network_security_group_association" "assoc_pe_sub" {
   subnet_id                 = azurerm_subnet.subnet3.id
-  network_security_group_id = azurerm_network_security_group.nsg.id
+  network_security_group_id = azurerm_network_security_group.nsg-2.id
 }
 
 resource "azurerm_network_security_rule" "nsg-rule-2" {
-  name                        = "deny-all"
-  priority                    = 4096  # Lowest priority, so it applies last
+  name                        = "deny-all-to-app2"
+  priority                    = 4000  # Lowest priority, so it applies last
   direction                   = "Inbound"
   access                      = "Deny"
   protocol                    = "*"
