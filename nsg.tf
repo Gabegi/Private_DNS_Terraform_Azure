@@ -46,7 +46,7 @@ resource "azurerm_network_security_rule" "nsg-rule-2" {
   destination_port_range      = "*"
   source_address_prefix       = "*"
 
-  resource_group_name         = "*"
+  resource_group_name         = azurerm_resource_group.rg.name
   destination_address_prefix  = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address
   network_security_group_name = azurerm_network_security_group.nsg-2.name
 }
