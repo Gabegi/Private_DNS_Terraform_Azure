@@ -11,7 +11,7 @@ public static class CallFunc
     public static async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
     {
-        string functionApp2Url = "https://dns-app2.azurewebsites.net/api/ReceiveCall?code=xxxx";// 
+        string functionApp2Url = "https://dns-app2.azurewebsites.net/api/ReceiveCall?code=IRsCQmxd4XLJcNtearH2E5MF62mXL6lq75_Fxt7dpTByAzFunrgJ7w==";// add your dns-app2 function key here
         // "http://localhost:7218/api/ReceiveCall"; local testing
 
         try
