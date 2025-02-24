@@ -12,14 +12,14 @@ resource "azurerm_subnet_network_security_group_association" "assoc_app2_sub" {
 
 resource "azurerm_network_security_rule" "nsg-rule-1" {
   name                        = "deny-all"
-  priority                    = 4096  # Lowest priority, so it applies last
+  priority                    = 200  # Lowest priority, so it applies last
   direction                   = "Inbound"
   access                      = "Deny"
   protocol                    = "*"
   source_port_range           = "*"
   destination_port_range      = "*"
   source_address_prefix       = "*"
-  destination_address_prefix  = "*"
+  destination_address_prefix  = azurerm_subnet.subnet2.address_prefixes[0] 
   resource_group_name         = azurerm_resource_group.rg.name
   network_security_group_name = azurerm_network_security_group.nsg.name
 }
