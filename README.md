@@ -16,11 +16,9 @@ Navigate to the repo and run:
 - terraform destroy -var-file="vars/values.tfvars"
 
 For testing:
-- navigate to the app repo and run
+- navigate to the src repo, to Application_1 and replace xxxx with the dns-app2 Function App Key (found in Azure)
 ```
-cd FunctionApp1  
-func azure functionapp publish dns-app2
-
+https://dns-app2.azurewebsites.net/api/ReceiveCall?code=xxxx"
 ```
 
 Or publish directly in Visual Studio
