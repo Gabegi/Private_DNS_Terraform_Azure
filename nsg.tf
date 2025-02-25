@@ -24,6 +24,22 @@ resource "azurerm_network_security_rule" "nsg-rule-1" {
   network_security_group_name = azurerm_network_security_group.nsg.name
 }
 
+resource "azurerm_network_security_rule" "deny-public-to-app2" {
+  name                        = "deny-public-to-app2"
+  priority                    = 1000  # Low priority, ensuring it applies last
+  direction                   = "Inbound"
+  access                      = "Deny"
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "*"
+  source_address_prefix       = "*"
+  destination_address_prefix  = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address
+  network_security_group_name = azurerm_network_security_group.nsg-2.name
+  resource_group_name         = azurerm_resource_group.rg.name
+}
+
+
+//////////////////////// Subnet 3 NSG //////////////////////////////////////
 resource "azurerm_network_security_group" "nsg-2" {
   name                = "nsg-sub3"
   location            = azurerm_resource_group.rg.location
