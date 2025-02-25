@@ -11,6 +11,8 @@ resource "azurerm_subnet" "subnet1" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 
+   
+
   delegation {
     name = "delegation"
 
@@ -42,4 +44,6 @@ resource "azurerm_subnet" "subnet3" {
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.3.0/24"]
+
+ private_endpoint_network_policies  = Enabled # Enables NSGs & UDRs
 }
