@@ -43,6 +43,8 @@ resource "azurerm_windows_function_app" "app1" {
 }
 app_settings = {
     "WEBSITE_RUN_FROM_PACKAGE"          = "1"
+    "WEBSITE_VNET_ROUTE_ALL" = "1"  # Ensures all outbound traffic uses VNet
+  "WEBSITE_DNS_SERVER"     = "20.105.224.40"  # Uses Azure Private DNS
   }
   
 }
