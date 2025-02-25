@@ -66,7 +66,7 @@ resource "azurerm_windows_function_app" "app2" {
               dotnet_version              = "v8.0" 
               use_dotnet_isolated_runtime = true 
     }
-    
+
      # Enforce Private Network Access Only
     ip_restriction {
       name                      = "Allow-Private-Endpoint"
@@ -93,5 +93,6 @@ resource "azurerm_windows_function_app" "app2" {
 }
 app_settings = {
     "WEBSITE_RUN_FROM_PACKAGE"          = "1"
+    "WEBSITE_VNET_ROUTE_ALL" = "1" //forces all outbound traffic through the vnet
       }
 }
