@@ -39,6 +39,12 @@ resource "azurerm_network_security_rule" "deny-public-to-app2" {
 }
 
 
+resource "azurerm_subnet_network_security_group_association" "assoc_app2_sub" {
+  subnet_id                 = azurerm_subnet.subnet2.id
+  network_security_group_id = azurerm_network_security_group.nsg.id  # Make sure you're associating the correct NSG to subnet2
+}
+
+
 //////////////////////// Subnet 3 NSG //////////////////////////////////////
 resource "azurerm_network_security_group" "nsg-2" {
   name                = "nsg-sub3"
