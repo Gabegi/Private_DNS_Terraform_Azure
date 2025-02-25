@@ -49,6 +49,5 @@ resource "azurerm_network_security_rule" "nsg-rule-2" {
   destination_port_range      = "*"
 
   source_address_prefix       = "*"
-  # destination_address_prefix  = "VirtualNetwork" // destination_address_prefix  = "10.0.3.5" 
   destination_address_prefix  = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address  # Block only PE2
 }
