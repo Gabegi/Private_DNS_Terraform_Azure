@@ -38,7 +38,7 @@ resource "azurerm_subnet_network_security_group_association" "assoc_pe_sub" {
 
 resource "azurerm_network_security_rule" "nsg-rule-2" {
   name                        = "deny-all-to-app2"
-  priority                    = 4000  # Lowest priority, so it applies last
+  priority                    = 100  # Lowest priority, so it applies last
   direction                   = "Inbound"
   access                      = "Deny"
   protocol                    = "*"
@@ -47,6 +47,6 @@ resource "azurerm_network_security_rule" "nsg-rule-2" {
   source_address_prefix       = "*"
 
   resource_group_name         = azurerm_resource_group.rg.name
-  destination_address_prefix  = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address
+  destination_address_prefix  = "10.0.3.5" //azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address
   network_security_group_name = azurerm_network_security_group.nsg-2.name
 }
