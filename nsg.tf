@@ -41,12 +41,14 @@ resource "azurerm_network_security_rule" "nsg-rule-2" {
   priority                    = 100  # Lowest priority, so it applies last
   direction                   = "Inbound"
   access                      = "Deny"
-  protocol                    = "*"
+  resource_group_name         = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.nsg-2.name
+
+    protocol                    = "*"
   source_port_range           = "*"
   destination_port_range      = "*"
-  source_address_prefix       = "*"
 
-  resource_group_name         = azurerm_resource_group.rg.name
-  destination_address_prefix  = "10.0.3.5" //azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address
-  network_security_group_name = azurerm_network_security_group.nsg-2.name
+  source_address_prefix       = "*"
+  # destination_address_prefix  = "VirtualNetwork" // destination_address_prefix  = "10.0.3.5" 
+  destination_address_prefix  = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address  # Block only PE2
 }
