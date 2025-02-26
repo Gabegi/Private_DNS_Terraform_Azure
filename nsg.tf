@@ -58,7 +58,7 @@ resource "azurerm_subnet_network_security_group_association" "assoc_pe_sub" {
   network_security_group_id = azurerm_network_security_group.nsg-2.id
 }
 
-resource "azurerm_network_security_rule" "nsg-rule-2" {
+resource "azurerm_network_security_rule" "deny-all-to-subnet3" {
   name                        = "deny-all-to-app2"
   priority                    = 200  # Lowest priority, so it applies last
   direction                   = "Inbound"
