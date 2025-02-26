@@ -62,6 +62,9 @@ resource "azurerm_windows_function_app" "app2" {
 
     virtual_network_subnet_id = azurerm_subnet.subnet2.id
 
+    # Disables Public Network Access
+  public_network_access_enabled = false
+
 
   site_config {
     application_stack {
