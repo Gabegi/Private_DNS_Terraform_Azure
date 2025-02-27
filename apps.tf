@@ -100,7 +100,7 @@ app_settings = {
   "WEBSITE_RUN_FROM_PACKAGE"          = "1"
   "WEBSITE_VNET_ROUTE_ALL"            = "1" // Ensures all outbound traffic goes through VNet
   "WEBSITE_PRIVATE_ENDPOINT_ENABLED"  = "1" // Ensures Private Endpoint is enforced
-  "WEBSITE_DNS_SERVER"                = "168.63.129.16" // Uses Azure's private DNS resolver
+  "WEBSITE_DNS_SERVER"                = "20.105.224.40" //"168.63.129.16" // Uses Azure's private DNS resolver
 }
 
 }
