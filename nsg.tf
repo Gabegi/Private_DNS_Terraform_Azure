@@ -89,3 +89,19 @@ resource "azurerm_network_security_rule" "nsg-rule-3" {
   source_address_prefix       = azurerm_subnet.subnet1.address_prefixes[0]  # Only allow App1 Subnet
   destination_address_prefix  = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address  # Block only PE2
 }
+
+resource "azurerm_network_security_rule" "allow-pe1-to-pe2" {
+  name                        = "allow-pe1-to-pe2"
+  priority                    = 50  # Higher priority than deny rule (lower number)
+  direction                   = "Inbound"
+  access                      = "Allow"
+  resource_group_name         = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.nsg-2.name
+
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "*"
+
+  source_address_prefix       = azurerm_private_endpoint.app1_pe.private_service_connection[0].private_ip_address
+  destination_address_prefix  = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address
+}
