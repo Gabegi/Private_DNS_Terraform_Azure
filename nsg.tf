@@ -92,7 +92,7 @@ resource "azurerm_network_security_rule" "nsg-rule-3" {
 
 resource "azurerm_network_security_rule" "allow-pe1-to-pe2" {
   name                        = "allow-pe1-to-pe2"
-  priority                    = 50  # Higher priority than deny rule (lower number)
+  priority                    = 500  # Higher priority than deny rule (lower number)
   direction                   = "Inbound"
   access                      = "Allow"
   resource_group_name         = azurerm_resource_group.rg.name
