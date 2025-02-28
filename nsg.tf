@@ -46,7 +46,7 @@ resource "azurerm_network_security_rule" "nsg-rule-allow-private-endpoint" {
 }
 resource "azurerm_network_security_rule" "allow-app1-to-app2" {
   name                        = "allow-app1-to-app2"
-  priority                    = 50
+  priority                    = 150
   direction                   = "Inbound"
   access                      = "Allow"
   network_security_group_name = azurerm_network_security_group.nsg.name
