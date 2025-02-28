@@ -153,7 +153,7 @@ resource "azurerm_network_security_rule" "nsg-1-deny-all-inbound" {
 
 resource "azurerm_network_security_rule" "nsg-1-rule-allow-sub1-tosub3-outbound" {
   name                        = "allow-sub1-to-sub3"
-  priority                    = 100
+  priority                    = 150
   direction                   = "Outbound"
   access                      = "Allow"
   network_security_group_name = azurerm_network_security_group.nsg-1.name
