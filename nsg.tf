@@ -108,16 +108,16 @@ resource "azurerm_network_security_rule" "allow-pe1-to-pe2" {
 }
 
 //////////////////////// Subnet 1 NSG //////////////////////////////////////
-resource "azurerm_network_security_group" "nsg" {
-  name                = "nsg-sub2"
+resource "azurerm_network_security_group" "nsg-1" {
+  name                = "nsg-sub1"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
 
 # Associate NSG with PE Subnet
-resource "azurerm_subnet_network_security_group_association" "assoc_app2_sub" {
-  subnet_id                 = azurerm_subnet.subnet2.id
-  network_security_group_id = azurerm_network_security_group.nsg.id
+resource "azurerm_subnet_network_security_group_association" "assoc_app1_sub" {
+  subnet_id                 = azurerm_subnet.subnet1.id
+  network_security_group_id = azurerm_network_security_group.nsg-1.id
 }
 
 resource "azurerm_network_security_rule" "nsg-rule-1" {
@@ -133,7 +133,7 @@ resource "azurerm_network_security_rule" "nsg-rule-1" {
   source_port_range           = "*"
 
   source_address_prefix       = "*"
-  destination_address_prefix  = azurerm_subnet.subnet2.address_prefixes[0] 
+  destination_address_prefix  = azurerm_subnet.subnet1.address_prefixes[0] 
   
 }
 
