@@ -120,7 +120,7 @@ resource "azurerm_subnet_network_security_group_association" "assoc_app1_sub" {
   network_security_group_id = azurerm_network_security_group.nsg-1.id
 }
 
-resource "azurerm_network_security_rule" "nsg-rule-1" {
+resource "azurerm_network_security_rule" "nsg-1-deny-all-inbound" {
   name                        = "deny-all"
   priority                    = 200  # Lowest priority, so it applies last
   direction                   = "Inbound"
@@ -137,7 +137,7 @@ resource "azurerm_network_security_rule" "nsg-rule-1" {
   
 }
 
-resource "azurerm_network_security_rule" "nsg-rule-allow-private-endpoint" {
+resource "azurerm_network_security_rule" "nsg-1-rule-allow-sub1-tosub3-outbound" {
   name                        = "allow-sub1-to-sub3"
   priority                    = 100
   direction                   = "Outbound"
