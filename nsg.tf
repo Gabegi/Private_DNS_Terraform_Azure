@@ -1,3 +1,4 @@
+//////////////////////// Subnet 2 NSG //////////////////////////////////////
 resource "azurerm_network_security_group" "nsg" {
   name                = "nsg-sub2"
   location            = azurerm_resource_group.rg.location
