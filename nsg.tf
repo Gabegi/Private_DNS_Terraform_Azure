@@ -106,3 +106,50 @@ resource "azurerm_network_security_rule" "allow-pe1-to-pe2" {
   source_address_prefix       = azurerm_private_endpoint.app1_pe.private_service_connection[0].private_ip_address
   destination_address_prefix  = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address
 }
+
+//////////////////////// Subnet 1 NSG //////////////////////////////////////
+resource "azurerm_network_security_group" "nsg" {
+  name                = "nsg-sub2"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+}
+
+# Associate NSG with PE Subnet
+resource "azurerm_subnet_network_security_group_association" "assoc_app2_sub" {
+  subnet_id                 = azurerm_subnet.subnet2.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
+}
+
+resource "azurerm_network_security_rule" "nsg-rule-1" {
+  name                        = "deny-all"
+  priority                    = 200  # Lowest priority, so it applies last
+  direction                   = "Inbound"
+  access                      = "Deny"
+  protocol                    = "*"
+  resource_group_name         = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.nsg.name
+
+  destination_port_range      = "*"
+  source_port_range           = "*"
+
+  source_address_prefix       = "*"
+  destination_address_prefix  = azurerm_subnet.subnet2.address_prefixes[0] 
+  
+}
+
+resource "azurerm_network_security_rule" "nsg-rule-allow-private-endpoint" {
+  name                        = "allow-pe-to-app2"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  network_security_group_name = azurerm_network_security_group.nsg.name
+  resource_group_name         = azurerm_resource_group.rg.name
+  
+  protocol                    = "*"
+  source_port_range           = "*"
+  destination_port_range      = "*"
+
+  source_address_prefix       = azurerm_subnet.subnet3.address_prefixes[0]  # Private endpoint subnet
+  destination_address_prefix  = azurerm_subnet.subnet2.address_prefixes[0]  # App2 subnet
+  
+}
