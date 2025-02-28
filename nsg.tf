@@ -127,7 +127,7 @@ resource "azurerm_network_security_rule" "nsg-rule-1" {
   access                      = "Deny"
   protocol                    = "*"
   resource_group_name         = azurerm_resource_group.rg.name
-  network_security_group_name = azurerm_network_security_group.nsg.name
+  network_security_group_name = azurerm_network_security_group.nsg-1.name
 
   destination_port_range      = "*"
   source_port_range           = "*"
@@ -138,11 +138,11 @@ resource "azurerm_network_security_rule" "nsg-rule-1" {
 }
 
 resource "azurerm_network_security_rule" "nsg-rule-allow-private-endpoint" {
-  name                        = "allow-pe-to-app2"
+  name                        = "allow-app1-to-sub3"
   priority                    = 100
-  direction                   = "Inbound"
+  direction                   = "Outbound"
   access                      = "Allow"
-  network_security_group_name = azurerm_network_security_group.nsg.name
+  network_security_group_name = azurerm_network_security_group.nsg-1.name
   resource_group_name         = azurerm_resource_group.rg.name
   
   protocol                    = "*"
