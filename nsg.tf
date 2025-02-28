@@ -138,7 +138,7 @@ resource "azurerm_network_security_rule" "nsg-rule-1" {
 }
 
 resource "azurerm_network_security_rule" "nsg-rule-allow-private-endpoint" {
-  name                        = "allow-app1-to-sub3"
+  name                        = "allow-sub1-to-sub3"
   priority                    = 100
   direction                   = "Outbound"
   access                      = "Allow"
@@ -149,7 +149,7 @@ resource "azurerm_network_security_rule" "nsg-rule-allow-private-endpoint" {
   source_port_range           = "*"
   destination_port_range      = "*"
 
-  source_address_prefix       = azurerm_subnet.subnet3.address_prefixes[0]  # Private endpoint subnet
-  destination_address_prefix  = azurerm_subnet.subnet2.address_prefixes[0]  # App2 subnet
+  source_address_prefix       = azurerm_subnet.subnet1.address_prefixes[0]  # Private endpoint subnet
+  destination_address_prefix  = azurerm_subnet.subnet3.address_prefixes[0]  # App2 subnet
   
 }
