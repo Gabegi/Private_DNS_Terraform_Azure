@@ -76,22 +76,6 @@ resource "azurerm_windows_function_app" "app2" {
               use_dotnet_isolated_runtime = true 
     }
 
-    #  # Enforce Private Network Access Only
-    # ip_restriction {
-    #   name                      = "Allow-Private-Endpoint"
-    #   priority                  = 100
-    #   action                    = "Allow"
-    #   ip_address                 = null  # No specific IPs, use Virtual Network
-    #   virtual_network_subnet_id = azurerm_subnet.subnet3.id  # Subnet hosting Private Endpoint
-    # }
-
-    # # Block ALL Public Access
-    # ip_restriction {
-    #   name     = "Deny-Public"
-    #   priority = 200
-    #   action   = "Deny"
-    #   ip_address = "0.0.0.0/0"  # Blocks all public traffic
-    # }
 
     cors {
       allowed_origins = [
@@ -111,3 +95,22 @@ app_settings = {
 }
 
 }
+
+
+
+    #  # Enforce Private Network Access Only
+    # ip_restriction {
+    #   name                      = "Allow-Private-Endpoint"
+    #   priority                  = 100
+    #   action                    = "Allow"
+    #   ip_address                 = null  # No specific IPs, use Virtual Network
+    #   virtual_network_subnet_id = azurerm_subnet.subnet3.id  # Subnet hosting Private Endpoint
+    # }
+
+    # # Block ALL Public Access
+    # ip_restriction {
+    #   name     = "Deny-Public"
+    #   priority = 200
+    #   action   = "Deny"
+    #   ip_address = "0.0.0.0/0"  # Blocks all public traffic
+    # }
