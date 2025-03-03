@@ -101,6 +101,7 @@ resource "azurerm_windows_function_app" "app2" {
     }
 }
 app_settings = {
+  "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
   "WEBSITE_RUN_FROM_PACKAGE"          = "1"
   "WEBSITE_VNET_ROUTE_ALL"            = "1" // Ensures all outbound traffic goes through VNet
   # "WEBSITE_PRIVATE_ENDPOINT_ENABLED"  = "1" // Ensures Private Endpoint is enforced
