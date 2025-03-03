@@ -73,22 +73,6 @@ resource "azurerm_subnet_network_security_group_association" "assoc_pe_sub" {
   network_security_group_id = azurerm_network_security_group.nsg-2.id
 }
 
-# resource "azurerm_network_security_rule" "deny-all-to-subnet3" {
-#   name                        = "deny-all-to-app2"
-#   priority                    = 200  # Lowest priority, so it applies last
-#   direction                   = "Inbound"
-#   access                      = "Deny"
-#   resource_group_name         = azurerm_resource_group.rg.name
-#   network_security_group_name = azurerm_network_security_group.nsg-2.name
-
-#     protocol                    = "*"
-#   source_port_range           = "*"
-#   destination_port_range      = "*"
-
-#   source_address_prefix       = "*"
-#   destination_address_prefix  = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address  # Block only PE2
-# }
-
 resource "azurerm_network_security_rule" "nsg-rule-3" {
   name                        = "allow-app1-to-app2"
   priority                    = 100  # Lowest priority, so it applies last
