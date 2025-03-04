@@ -29,10 +29,10 @@ resource "azurerm_windows_function_app" "app1" {
   virtual_network_subnet_id = azurerm_subnet.subnet1.id
 
   site_config {
-    application_stack {
-      dotnet_version              = "v8.0" 
-      use_dotnet_isolated_runtime = true 
-    }
+    # application_stack {
+    #   dotnet_version              = "v8.0" 
+    #   use_dotnet_isolated_runtime = true 
+    # }
     cors {
       allowed_origins = [
         "https://portal.azure.com"
