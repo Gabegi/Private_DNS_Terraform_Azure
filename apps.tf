@@ -89,6 +89,8 @@ resource "azurerm_windows_function_app" "app2" {
     }
 }
 app_settings = {
+  "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.app_insights.connection_string
+    "APPINSIGHTS_INSTRUMENTATIONKEY"        = azurerm_application_insights.app_insights.instrumentation_key
   # "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
   # "WEBSITE_RUN_FROM_PACKAGE"          = "1"
   # "WEBSITE_VNET_ROUTE_ALL"            = "1" // Ensures all outbound traffic goes through VNet
