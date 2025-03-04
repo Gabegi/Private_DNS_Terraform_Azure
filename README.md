@@ -23,3 +23,9 @@ https://dns-app2.azurewebsites.net/api/ReceiveCall?code=xxxx"
 
 Or publish directly in Visual Studio
 
+Call app
+
+```
+curl -o response.html https://dns-app2.azurewebsites.net
+```
+
