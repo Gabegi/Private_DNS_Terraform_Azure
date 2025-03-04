@@ -28,36 +28,36 @@ resource "azurerm_network_security_rule" "nsg-rule-1" {
   
 }
 
-resource "azurerm_network_security_rule" "nsg-rule-allow-private-endpoint" {
-  name                        = "allow-pe-to-app2"
-  priority                    = 100
-  direction                   = "Inbound"
-  access                      = "Allow"
-  network_security_group_name = azurerm_network_security_group.nsg.name
-  resource_group_name         = azurerm_resource_group.rg.name
+# resource "azurerm_network_security_rule" "nsg-rule-allow-private-endpoint" {
+#   name                        = "allow-pe-to-app2"
+#   priority                    = 100
+#   direction                   = "Inbound"
+#   access                      = "Allow"
+#   network_security_group_name = azurerm_network_security_group.nsg.name
+#   resource_group_name         = azurerm_resource_group.rg.name
   
-  protocol                    = "*"
-  source_port_range           = "*"
-  destination_port_range      = "*"
+#   protocol                    = "*"
+#   source_port_range           = "*"
+#   destination_port_range      = "*"
 
-  source_address_prefix       = azurerm_subnet.subnet3.address_prefixes[0]  # Private endpoint subnet
-  destination_address_prefix  = azurerm_subnet.subnet2.address_prefixes[0]  # App2 subnet
+#   source_address_prefix       = azurerm_subnet.subnet3.address_prefixes[0]  # Private endpoint subnet
+#   destination_address_prefix  = azurerm_subnet.subnet2.address_prefixes[0]  # App2 subnet
   
-}
-resource "azurerm_network_security_rule" "allow-app1-to-app2" {
-  name                        = "allow-app1-to-app2"
-  priority                    = 150
-  direction                   = "Inbound"
-  access                      = "Allow"
-  network_security_group_name = azurerm_network_security_group.nsg.name
-  resource_group_name         = azurerm_resource_group.rg.name
+# }
+# resource "azurerm_network_security_rule" "allow-app1-to-app2" {
+#   name                        = "allow-app1-to-app2"
+#   priority                    = 150
+#   direction                   = "Inbound"
+#   access                      = "Allow"
+#   network_security_group_name = azurerm_network_security_group.nsg.name
+#   resource_group_name         = azurerm_resource_group.rg.name
 
-  protocol                    = "*"
-  source_port_range           = "*"
-  destination_port_range      = "*"
-  source_address_prefix       = azurerm_subnet.subnet1.address_prefixes[0]  # Allow App1 Subnet
-  destination_address_prefix  = azurerm_subnet.subnet2.address_prefixes[0]  # App2 Subnet
-}
+#   protocol                    = "*"
+#   source_port_range           = "*"
+#   destination_port_range      = "*"
+#   source_address_prefix       = azurerm_subnet.subnet1.address_prefixes[0]  # Allow App1 Subnet
+#   destination_address_prefix  = azurerm_subnet.subnet2.address_prefixes[0]  # App2 Subnet
+# }
 
 
 //////////////////////// Subnet 3 NSG //////////////////////////////////////
