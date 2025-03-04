@@ -84,15 +84,15 @@ resource "azurerm_windows_function_app" "app2" {
       support_credentials = true
     }
 }
-app_settings = {
-  "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
-  "WEBSITE_RUN_FROM_PACKAGE"          = "1"
-  "WEBSITE_VNET_ROUTE_ALL"            = "1" // Ensures all outbound traffic goes through VNet
-  # "WEBSITE_PRIVATE_ENDPOINT_ENABLED"  = "1" // Ensures Private Endpoint is enforced
-  "WEBSITE_DNS_SERVER"                = "20.105.224.40"
-  //"10.0.3.5"
-  // "20.105.224.40" //"168.63.129.16" // Uses Azure's private DNS resolver
-}
+# app_settings = {
+#   "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
+#   "WEBSITE_RUN_FROM_PACKAGE"          = "1"
+#   "WEBSITE_VNET_ROUTE_ALL"            = "1" // Ensures all outbound traffic goes through VNet
+#   # "WEBSITE_PRIVATE_ENDPOINT_ENABLED"  = "1" // Ensures Private Endpoint is enforced
+#   "WEBSITE_DNS_SERVER"                = "20.105.224.40"
+#   //"10.0.3.5"
+#   // "20.105.224.40" //"168.63.129.16" // Uses Azure's private DNS resolver
+# }
 
 }
 
