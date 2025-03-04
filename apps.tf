@@ -41,15 +41,19 @@ resource "azurerm_windows_function_app" "app1" {
     }
     
 }
-# app_settings = {
-#   "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
-#     "WEBSITE_RUN_FROM_PACKAGE"          = "1"
-#     "WEBSITE_VNET_ROUTE_ALL" = "1"  # Ensures all outbound traffic uses VNet
-#   "WEBSITE_DNS_SERVER"     = "20.105.224.40" 
+app_settings = {
+   "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.app_insights.connection_string
+    "APPINSIGHTS_INSTRUMENTATIONKEY"        = azurerm_application_insights.app_insights.instrumentation_key
+
+
+  # "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
+  #   "WEBSITE_RUN_FROM_PACKAGE"          = "1"
+  #   "WEBSITE_VNET_ROUTE_ALL" = "1"  # Ensures all outbound traffic uses VNet
+  # "WEBSITE_DNS_SERVER"     = "20.105.224.40" 
   
   // "10.0.3.4"
   //"20.105.224.40"  # Uses Azure Private DNS
-  # }
+  }
   
 }
 
@@ -84,15 +88,15 @@ resource "azurerm_windows_function_app" "app2" {
       support_credentials = true
     }
 }
-# app_settings = {
-#   "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
-#   "WEBSITE_RUN_FROM_PACKAGE"          = "1"
-#   "WEBSITE_VNET_ROUTE_ALL"            = "1" // Ensures all outbound traffic goes through VNet
-#   # "WEBSITE_PRIVATE_ENDPOINT_ENABLED"  = "1" // Ensures Private Endpoint is enforced
-#   "WEBSITE_DNS_SERVER"                = "20.105.224.40"
-#   //"10.0.3.5"
-#   // "20.105.224.40" //"168.63.129.16" // Uses Azure's private DNS resolver
-# }
+app_settings = {
+  # "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
+  # "WEBSITE_RUN_FROM_PACKAGE"          = "1"
+  # "WEBSITE_VNET_ROUTE_ALL"            = "1" // Ensures all outbound traffic goes through VNet
+  # # "WEBSITE_PRIVATE_ENDPOINT_ENABLED"  = "1" // Ensures Private Endpoint is enforced
+  # "WEBSITE_DNS_SERVER"                = "20.105.224.40"
+  # //"10.0.3.5"
+  # // "20.105.224.40" //"168.63.129.16" // Uses Azure's private DNS resolver
+}
 
 }
 
