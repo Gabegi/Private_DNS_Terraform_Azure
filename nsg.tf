@@ -101,33 +101,28 @@ resource "azurerm_subnet_network_security_group_association" "assoc_pe_sub" {
 
 //////////////////////// Subnet 1 NSG //////////////////////////////////////
 resource "azurerm_network_security_group" "nsg-1" {
-  name                = "nsg-sub1"
+  name                = "nsg-1"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+
+  security_rule {
+    name                       = "deny-all"
+    priority                   = 200  # Lowest priority, so it applies last
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = azurerm_subnet.subnet1.address_prefixes[0]
+  }
 }
 
-# Associate NSG with PE Subnet
 resource "azurerm_subnet_network_security_group_association" "assoc_app1_sub" {
   subnet_id                 = azurerm_subnet.subnet1.id
   network_security_group_id = azurerm_network_security_group.nsg-1.id
 }
 
-resource "azurerm_network_security_rule" "nsg-1-deny-all-inbound" {
-  name                        = "deny-all"
-  priority                    = 200  # Lowest priority, so it applies last
-  direction                   = "Inbound"
-  access                      = "Deny"
-  protocol                    = "*"
-  resource_group_name         = azurerm_resource_group.rg.name
-  network_security_group_name = azurerm_network_security_group.nsg-1.name
-
-  destination_port_range      = "*"
-  source_port_range           = "*"
-
-  source_address_prefix       = "*"
-  destination_address_prefix  = azurerm_subnet.subnet1.address_prefixes[0] 
-  
-}
 
 # resource "azurerm_network_security_rule" "nsg-1-rule-allow-sub1-tosub3-outbound" {
 #   name                        = "allow-sub1-to-sub3"
