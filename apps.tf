@@ -120,3 +120,49 @@ app_settings = {
     #   action   = "Deny"
     #   ip_address = "0.0.0.0/0"  # Blocks all public traffic
     # }
+
+
+    
+# Function App 2
+resource "azurerm_windows_function_app" "app2" {
+  name                = "dns-app2"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+
+  storage_account_name       = azurerm_storage_account.sa1.name
+  storage_account_access_key = azurerm_storage_account.sa1.primary_access_key
+  service_plan_id            = azurerm_service_plan.asp.id
+
+    virtual_network_subnet_id = azurerm_subnet.subnet2.id
+
+    # Disables Public Network Access
+  public_network_access_enabled = false
+
+
+  site_config {
+    application_stack {
+              dotnet_version              = "v8.0" 
+              use_dotnet_isolated_runtime = true 
+    }
+
+
+    cors {
+      allowed_origins = [
+        "https://portal.azure.com"
+      ]
+      support_credentials = true
+    }
+}
+app_settings = {
+  "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.app_insights.connection_string
+    "APPINSIGHTS_INSTRUMENTATIONKEY"        = azurerm_application_insights.app_insights.instrumentation_key
+  # "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
+  # "WEBSITE_RUN_FROM_PACKAGE"          = "1"
+  # "WEBSITE_VNET_ROUTE_ALL"            = "1" // Ensures all outbound traffic goes through VNet
+  "WEBSITE_PRIVATE_ENDPOINT_ENABLED"  = "1" // Ensures Private Endpoint is enforced
+  # "WEBSITE_DNS_SERVER"                = "20.105.224.40"
+  # //"10.0.3.5"
+  # // "20.105.224.40" //"168.63.129.16" // Uses Azure's private DNS resolver
+}
+
+}
