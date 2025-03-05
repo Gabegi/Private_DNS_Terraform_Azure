@@ -124,16 +124,14 @@ app_settings = {
 
     
 # Function App 2
-resource "azurerm_windows_function_app" "app2" {
-  name                = "dns-app2"
+resource "azurerm_windows_function_app" "app3" {
+  name                = "dns-app3"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
 
   storage_account_name       = azurerm_storage_account.sa1.name
   storage_account_access_key = azurerm_storage_account.sa1.primary_access_key
   service_plan_id            = azurerm_service_plan.asp.id
-
-    virtual_network_subnet_id = azurerm_subnet.subnet2.id
 
     # Disables Public Network Access
   public_network_access_enabled = false
