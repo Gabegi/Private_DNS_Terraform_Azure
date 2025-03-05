@@ -59,6 +59,18 @@ resource "azurerm_network_security_group" "nsg-2" {
   name                = "nsg-sub3"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+
+  security_rule {
+    name                       = "deny-all"
+    priority                   = 200  # Lowest priority, so it applies last
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = azurerm_subnet.subnet2.address_prefixes[0]
+  }
 }
 
 # Associate NSG with PE Subnet
