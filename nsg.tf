@@ -1,26 +1,26 @@
 //////////////////////// Subnet 2 NSG //////////////////////////////////////
-# resource "azurerm_network_security_group" "nsg" {
-#   name                = "nsg-sub2"
-#   location            = azurerm_resource_group.rg.location
-#   resource_group_name = azurerm_resource_group.rg.name
+resource "azurerm_network_security_group" "nsg" {
+  name                = "nsg-sub2"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
 
-#   security_rule {
-#     name                       = "deny-all"
-#     priority                   = 200  # Lowest priority, so it applies last
-#     direction                  = "Inbound"
-#     access                     = "Deny"
-#     protocol                   = "*"
-#     source_port_range          = "*"
-#     destination_port_range     = "*"
-#     source_address_prefix      = "*"
-#     destination_address_prefix = azurerm_subnet.subnet2.address_prefixes[0]
-#   }
-# }
+  security_rule {
+    name                       = "deny-all"
+    priority                   = 200  # Lowest priority, so it applies last
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = azurerm_subnet.subnet2.address_prefixes[0]
+  }
+}
 
-# resource "azurerm_subnet_network_security_group_association" "assoc_app2_sub" {
-#   subnet_id                 = azurerm_subnet.subnet2.id
-#   network_security_group_id = azurerm_network_security_group.nsg.id
-# }
+resource "azurerm_subnet_network_security_group_association" "assoc_app2_sub" {
+  subnet_id                 = azurerm_subnet.subnet2.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
+}
 
 # resource "azurerm_network_security_rule" "nsg-rule-allow-private-endpoint" {
 #   name                        = "allow-pe-to-app2"
