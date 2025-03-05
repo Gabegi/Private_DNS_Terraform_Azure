@@ -134,7 +134,7 @@ resource "azurerm_windows_function_app" "app3" {
   service_plan_id            = azurerm_service_plan.asp.id
 
     # Disables Public Network Access
-  public_network_access_enabled = false
+  // public_network_access_enabled = false
 
 
   site_config {
@@ -157,7 +157,7 @@ app_settings = {
   # "WEBSITE_USE_PLACEHOLDER_DOTNETISOLATED" = "1" // allows to target different versions of .Net
   # "WEBSITE_RUN_FROM_PACKAGE"          = "1"
   # "WEBSITE_VNET_ROUTE_ALL"            = "1" // Ensures all outbound traffic goes through VNet
-  "WEBSITE_PRIVATE_ENDPOINT_ENABLED"  = "1" // Ensures Private Endpoint is enforced
+  # "WEBSITE_PRIVATE_ENDPOINT_ENABLED"  = "1" // Ensures Private Endpoint is enforced
   # "WEBSITE_DNS_SERVER"                = "20.105.224.40"
   # //"10.0.3.5"
   # // "20.105.224.40" //"168.63.129.16" // Uses Azure's private DNS resolver
