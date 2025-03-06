@@ -27,6 +27,31 @@ resource "azurerm_network_security_group" "nsg" {
     source_address_prefix      = "*" // "0.0.0.0/0"  # Deny from any external source
     destination_address_prefix = "20.105.224.0/24"
   }
+    # Deny all inbound traffic from the internet
+  security_rule {
+    name                       = "DenyAllInbound"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "Internet"
+    destination_address_prefix = "*"
+  }
+
+  # You can still allow specific internal traffic if needed
+  security_rule {
+    name                       = "AllowVNetInbound"
+    priority                   = 200
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "VirtualNetwork"
+    destination_address_prefix = "*"
+  }
 }
 
 resource "azurerm_subnet_network_security_group_association" "assoc_app2_sub" {
