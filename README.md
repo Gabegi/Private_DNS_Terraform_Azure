@@ -29,5 +29,7 @@ Call app
 curl -o response.html https://dns-app2.azurewebsites.net
 curl -w "\nHTTP Status Code: %{http_code}\n" -o response.html https://dns-app2.azurewebsites.net && cat response.html
 
+ tracert -d dns-app2.azurewebsites.net
+
 ```
 
