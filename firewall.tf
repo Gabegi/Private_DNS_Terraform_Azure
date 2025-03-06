@@ -20,7 +20,7 @@ resource "azurerm_firewall_application_rule_collection" "deny_external_to_subnet
     name                    = "blockExternalToSubnet2"
     source_addresses        = ["*"]  # Block all external traffic
     target_fqdns = [
-      "*.azure.com",
+      "*.azurewebsites.net",
     ]
     protocol {
       port = "443"
