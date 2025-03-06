@@ -30,7 +30,7 @@ resource "azurerm_network_security_group" "nsg" {
     # Deny all inbound traffic from the internet
   security_rule {
     name                       = "DenyAllInbound"
-    priority                   = 100
+    priority                   = 150
     direction                  = "Inbound"
     access                     = "Deny"
     protocol                   = "*"
