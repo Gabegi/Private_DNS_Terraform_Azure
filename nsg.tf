@@ -18,7 +18,7 @@ resource "azurerm_network_security_group" "nsg" {
 
   security_rule {
     name                       = "deny-all"
-    priority                   = 200  # Lowest priority, so it applies last
+    priority                   = 100  # Lowest priority, so it applies last
     direction                  = "Inbound"
     access                     = "Deny"
     protocol                   = "*"
