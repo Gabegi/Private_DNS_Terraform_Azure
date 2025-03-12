@@ -110,22 +110,22 @@ resource "azurerm_subnet_network_security_group_association" "assoc_app1_sub" {
 }
 
 
-# //////////////////////// Subnet 3 NSG //////////////////////////////////////
-# resource "azurerm_network_security_group" "nsg-2" {
-#   name                = "nsg-sub3"
-#   location            = azurerm_resource_group.rg.location
-#   resource_group_name = azurerm_resource_group.rg.name
+//////////////////////// Subnet 3 NSG //////////////////////////////////////
+resource "azurerm_network_security_group" "nsg-2" {
+  name                = "nsg-sub3"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
 
-#    # Block ALL inbound traffic
-#   security_rule {
-#     name                       = "deny-all-inbound"
-#     priority                   = 100
-#     direction                  = "Inbound"
-#     access                     = "Deny"
-#     protocol                   = "*"
-#     source_port_range          = "*"
-#     destination_port_range     = "*"
-#     source_address_prefix      = "*"
-#     destination_address_prefix = "*"
-#   }
-# }
+   # Block ALL inbound traffic
+  security_rule {
+    name                       = "deny-all-inbound"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Deny"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
