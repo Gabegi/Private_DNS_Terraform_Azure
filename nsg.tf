@@ -42,9 +42,9 @@ resource "azurerm_network_security_group" "nsg-sub2" {
   }
 }
 
-resource "azurerm_subnet_network_security_group_association" "assoc_app2_sub" {
+resource "azurerm_subnet_network_security_group_association" "subnet2-nsg2" {
   subnet_id                 = azurerm_subnet.subnet2.id
-  network_security_group_id = azurerm_network_security_group.nsg.id
+  network_security_group_id = azurerm_network_security_group.nsg-sub2.id
 }
 
 # //////////////////////// Subnet 3 NSG //////////////////////////////////////
