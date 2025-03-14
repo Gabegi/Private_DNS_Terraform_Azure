@@ -18,7 +18,7 @@ resource "azurerm_network_security_group" "nsg" {
     # Deny all inbound traffic from the internet
   security_rule {
     name                       = "DenyAllInbound"
-    priority                   = 150
+    priority                   = 200
     direction                  = "Inbound"
     access                     = "Deny"
     protocol                   = "*"
@@ -31,7 +31,7 @@ resource "azurerm_network_security_group" "nsg" {
   # You can still allow specific internal traffic if needed
   security_rule {
     name                       = "AllowVNetInbound"
-    priority                   = 200
+    priority                   = 150
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
