@@ -6,7 +6,7 @@ resource "azurerm_network_security_group" "nsg-sub2" {
 
   security_rule {
     name                       = "deny-all-inbound"
-    priority                   = 100  # Lowest priority, so it applies first
+    priority                   = 150  # Lowest priority, so it applies first
     direction                  = "Inbound"
     access                     = "Deny"
     protocol                   = "*"
@@ -19,7 +19,7 @@ resource "azurerm_network_security_group" "nsg-sub2" {
     # Block Virtual network communication
   security_rule {
     name                       = "BlockVnetInbound"
-    priority                   = 150
+    priority                   = 100
     direction                  = "Inbound"
     access                     = "Deny"
     protocol                   = "*"
