@@ -6,13 +6,26 @@ resource "azurerm_network_security_group" "nsg-sub2" {
 
   security_rule {
     name                       = "deny-all-inbound"
-    priority                   = 100  # Lowest priority, so it applies last
+    priority                   = 100  # Lowest priority, so it applies first
     direction                  = "Inbound"
     access                     = "Deny"
     protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = "*" // "0.0.0.0/0"  # Deny from any external source
+    source_address_prefix      = "*" 
+    destination_address_prefix = "*"
+  }
+
+    # Block Virtual network communication
+  security_rule {
+    name                       = "BlockVnetInbound"
+    priority                   = 150
+    direction                  = "Inbound"
+    access                     = "Block"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = "VirtualNetwork"
     destination_address_prefix = "*"
   }
 
@@ -40,18 +53,7 @@ resource "azurerm_network_security_group" "nsg-sub2" {
   #   destination_address_prefix = "*"
   # }
 
-  # # You can still allow specific internal traffic if needed
-  # security_rule {
-  #   name                       = "AllowVNetInbound"
-  #   priority                   = 150
-  #   direction                  = "Inbound"
-  #   access                     = "Block"
-  #   protocol                   = "*"
-  #   source_port_range          = "*"
-  #   destination_port_range     = "*"
-  #   source_address_prefix      = "VirtualNetwork"
-  #   destination_address_prefix = "*"
-  # }
+
 }
 
 resource "azurerm_subnet_network_security_group_association" "subnet2-nsg2" {
