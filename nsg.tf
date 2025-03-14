@@ -21,7 +21,7 @@ resource "azurerm_network_security_group" "nsg-sub2" {
     name                       = "BlockVnetInbound"
     priority                   = 150
     direction                  = "Inbound"
-    access                     = "Block"
+    access                     = "Deny"
     protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
