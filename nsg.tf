@@ -50,7 +50,7 @@ resource "azurerm_subnet_network_security_group_association" "subnet2-nsg2" {
 }
 
 //////////////////////// Subnet 3 NSG //////////////////////////////////////
-resource "azurerm_network_security_group" "nsg-2" {
+resource "azurerm_network_security_group" "nsg-3" {
   name                = "nsg-sub3"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -72,7 +72,7 @@ resource "azurerm_network_security_group" "nsg-2" {
 # Associate NSG with subnet3 Sbnet
 resource "azurerm_subnet_network_security_group_association" "assoc_pe_sub" {
   subnet_id                 = azurerm_subnet.subnet3.id
-  network_security_group_id = azurerm_network_security_group.nsg-2.id
+  network_security_group_id = azurerm_network_security_group.nsg-3.id
 }
 
 # //////////////////////// Subnet 1 NSG //////////////////////////////////////
