@@ -64,8 +64,8 @@ resource "azurerm_network_security_group" "nsg-3" {
     protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = azurerm_subnet.subnet1.address_prefix  # Subnet 1 CIDR
-    destination_address_prefix = azurerm_subnet.subnet2.address_prefix  # Subnet 2 CIDR
+    source_address_prefix      = azurerm_subnet.subnet1.address_prefixes[0]  # Subnet 1 CIDR
+    destination_address_prefix = azurerm_subnet.subnet2.address_prefixes[0]   # Subnet 2 CIDR
   }
 
    # Block ALL inbound traffic
