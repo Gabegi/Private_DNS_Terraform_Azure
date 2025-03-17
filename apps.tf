@@ -13,7 +13,7 @@ resource "azurerm_service_plan" "asp" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   os_type             = "Windows"
-  sku_name            = "P1v2"
+  sku_name            =  "P3mv3"// "P1v2"
 }
 
 # Function App 1
