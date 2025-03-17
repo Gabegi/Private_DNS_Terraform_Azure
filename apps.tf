@@ -13,7 +13,7 @@ resource "azurerm_service_plan" "asp" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   os_type             = "Windows"
-  sku_name            =  "P3mv3"// "P1v2"
+  sku_name            =  "P1v2" // "P4mv3"// 
 }
 
 # Function App 1
@@ -110,7 +110,7 @@ resource "azurerm_windows_function_app" "app3" {
 
   storage_account_name       = azurerm_storage_account.sa1.name
   storage_account_access_key = azurerm_storage_account.sa1.primary_access_key
-  service_plan_id            = azurerm_service_plan.asp.id
+  service_plan_id            = azurerm_service_plan.asp2.id
 
   virtual_network_subnet_id = azurerm_subnet.subnet4.id
 
@@ -133,4 +133,12 @@ app_settings = {
   "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.app_insights.connection_string
     "APPINSIGHTS_INSTRUMENTATIONKEY"        = azurerm_application_insights.app_insights.instrumentation_key
 }
+}
+
+resource "azurerm_service_plan" "asp2" {
+  name                = "dns-asp2"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  os_type             = "Windows"
+  sku_name            =  "P1v2" // "P4mv3"// 
 }
