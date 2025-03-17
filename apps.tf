@@ -101,27 +101,6 @@ app_settings = {
 }
 
 }
-
-
-
-    #  # Enforce Private Network Access Only
-    # ip_restriction {
-    #   name                      = "Allow-Private-Endpoint"
-    #   priority                  = 100
-    #   action                    = "Allow"
-    #   ip_address                 = null  # No specific IPs, use Virtual Network
-    #   virtual_network_subnet_id = azurerm_subnet.subnet3.id  # Subnet hosting Private Endpoint
-    # }
-
-    # # Block ALL Public Access
-    # ip_restriction {
-    #   name     = "Deny-Public"
-    #   priority = 200
-    #   action   = "Deny"
-    #   ip_address = "0.0.0.0/0"  # Blocks all public traffic
-    # }
-
-
     
 # Function App 2
 resource "azurerm_windows_function_app" "app3" {
@@ -132,6 +111,8 @@ resource "azurerm_windows_function_app" "app3" {
   storage_account_name       = azurerm_storage_account.sa1.name
   storage_account_access_key = azurerm_storage_account.sa1.primary_access_key
   service_plan_id            = azurerm_service_plan.asp.id
+
+  virtual_network_subnet_id = azurerm_subnet.subnet4.id
 
     # Disables Public Network Access
   // public_network_access_enabled = false
