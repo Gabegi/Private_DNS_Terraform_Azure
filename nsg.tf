@@ -57,15 +57,15 @@ resource "azurerm_network_security_group" "nsg-3" {
 
   # Allow inbound traffic from sub1 to sub2
   security_rule {
-    name                       = "allow-inbound-sub1-to-sub2"
+    name                       = "allow-inbound-pe1-to-pe2"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
-    source_address_prefix      = azurerm_subnet.subnet1.address_prefixes[0]  # Subnet 1 CIDR
-    destination_address_prefix = azurerm_subnet.subnet2.address_prefixes[0]   # Subnet 2 CIDR
+    source_address_prefix      = azurerm_private_endpoint.app1_pe.private_service_connection[0].private_ip_address  # PE1 Private IP
+    destination_address_prefix = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address  # PE2 Private IP
   }
 
    # Block ALL inbound traffic
