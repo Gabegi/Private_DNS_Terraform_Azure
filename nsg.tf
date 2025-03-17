@@ -55,10 +55,23 @@ resource "azurerm_network_security_group" "nsg-3" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
+  # Allow inbound traffic from sub1 to sub2
+  security_rule {
+    name                       = "allow-inbound-sub1-to-sub2"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "*"
+    source_port_range          = "*"
+    destination_port_range     = "*"
+    source_address_prefix      = azurerm_subnet.subnet1.address_prefix  # Subnet 1 CIDR
+    destination_address_prefix = azurerm_subnet.subnet2.address_prefix  # Subnet 2 CIDR
+  }
+
    # Block ALL inbound traffic
   security_rule {
     name                       = "deny-all-inbound"
-    priority                   = 100
+    priority                   = 200
     direction                  = "Inbound"
     access                     = "Deny"
     protocol                   = "*"
