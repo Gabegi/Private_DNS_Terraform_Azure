@@ -67,20 +67,6 @@ resource "azurerm_network_security_group" "nsg-3" {
     destination_address_prefix = azurerm_private_endpoint.app2_pe.private_service_connection[0].private_ip_address  # pe2 CIDR
   }
 
-
-  # Allow outbound traffic from Subnet3
-security_rule {
-  name                       = "allow-outbound-subnet3"
-  priority                   = 250
-  direction                  = "Outbound"
-  access                     = "Allow"
-  protocol                   = "*"
-  source_port_range          = "*"
-  destination_port_range     = "*"
-  source_address_prefix      = "*"
-  destination_address_prefix = "*"
-}
-
    # Block ALL inbound traffic
   security_rule {
     name                       = "deny-all-inbound"
