@@ -45,3 +45,40 @@ resource "azurerm_subnet_route_table_association" "rt_assoc" {
   subnet_id      = azurerm_subnet.subnet_app.id
   route_table_id = azurerm_route_table.rt.id
 }
+
+
+# Firewall Rules to Block External Traffic and Allow VNet
+resource "azurerm_firewall_policy_rule_collection_group" "fw_rules" {
+  name               = "fw-rules"
+  firewall_policy_id = azurerm_firewall_policy.fw_policy.id
+  priority           = 100
+}
+
+# Firewall Policy
+resource "azurerm_firewall_policy" "fw_policy" {
+  name                = "fw-policy"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+}
+
+# Deny Internet Access Rule
+resource "azurerm_firewall_policy_rule_collection_group" "deny_internet" {
+  name               = "deny-internet"
+  firewall_policy_id = azurerm_firewall_policy.fw_policy.id
+  priority           = 200
+
+  rule_collection {
+    name     = "deny-all-outbound"
+    priority = 200
+    action   = "Deny"
+
+    rule {
+      name              = "block-internet"
+      rule_type         = "NetworkRule"
+      protocols         = ["TCP", "UDP"]
+      source_addresses  = ["10.0.2.0/24"]
+      destination_addresses = ["*"]
+      destination_ports = ["80", "443"]
+    }
+  }
+}
