@@ -22,3 +22,10 @@ resource "azurerm_firewall" "fw" {
     public_ip_address_id = azurerm_public_ip.fw_pip.id
   }
 }
+
+# Route Table for App Subnet to Force Traffic Through Firewall
+resource "azurerm_route_table" "rt" {
+  name                          = "rt-firewall"
+  location                      = azurerm_resource_group.rg.location
+  resource_group_name           = azurerm_resource_group.rg.name
+}
