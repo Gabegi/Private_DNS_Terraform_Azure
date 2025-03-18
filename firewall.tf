@@ -39,3 +39,9 @@ resource "azurerm_route" "default_route" {
   next_hop_type          = "VirtualAppliance"
   next_hop_in_ip_address = var.firewall_private_ip
 }
+
+# Associate Route Table with App Subnet
+resource "azurerm_subnet_route_table_association" "rt_assoc" {
+  subnet_id      = azurerm_subnet.subnet_app.id
+  route_table_id = azurerm_route_table.rt.id
+}
