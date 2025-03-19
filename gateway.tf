@@ -46,7 +46,7 @@ resource "azurerm_application_gateway" "gateway" {
 
   http_listener {
      name                           = "https-listener"
-    frontend_ip_configuration_name = "appgw-frontend-ip"
+    frontend_ip_configuration_name = "public-ip"
     frontend_port_name             = "https-port"
     protocol                       = "Https"
     ssl_certificate_name           = "appgw-cert"
