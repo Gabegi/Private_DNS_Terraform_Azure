@@ -1,5 +1,5 @@
-resource "azurerm_public_ip" "example" {
-  name                = "example-pip"
+resource "azurerm_public_ip" "ip" {
+  name                = "dns-pip"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   allocation_method   = "Static"
@@ -28,11 +28,12 @@ resource "azurerm_application_gateway" "gateway" {
 
   frontend_ip_configuration {
     name                 = "public-ip"
-    public_ip_address_id = azurerm_public_ip.example.id
+    public_ip_address_id = azurerm_public_ip.ip.id
   }
 
   backend_address_pool {
-    name = local.backend_address_pool_name
+    name = "app2-pe"
+    ip_addresses = ["10.0.2.1"]
   }
 
   backend_http_settings {
