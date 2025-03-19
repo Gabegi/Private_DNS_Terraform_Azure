@@ -4,7 +4,6 @@ resource "azurerm_public_ip" "ip" {
   location            = azurerm_resource_group.rg.location
   allocation_method   = "Static"
 }
-
 resource "azurerm_application_gateway" "gateway" {
   name                = "example-appgateway"
   resource_group_name = azurerm_resource_group.rg.name
@@ -22,8 +21,8 @@ resource "azurerm_application_gateway" "gateway" {
   }
 
   frontend_port {
-    name = "frontendport"
-    port = 80
+    name = "https-port"   # 🔹 Ensure this name matches below
+    port = 443
   }
 
   frontend_ip_configuration {
@@ -32,12 +31,12 @@ resource "azurerm_application_gateway" "gateway" {
   }
 
   backend_address_pool {
-    name = "app2-pe"
+    name         = "app2-pe"
     ip_addresses = ["10.0.2.1"]
   }
 
   backend_http_settings {
-   name                  = "http-settings"
+    name                  = "http-settings"
     cookie_based_affinity = "Disabled"
     port                  = 443
     protocol              = "Https"
@@ -45,9 +44,9 @@ resource "azurerm_application_gateway" "gateway" {
   }
 
   http_listener {
-     name                           = "https-listener"
+    name                           = "https-listener"
     frontend_ip_configuration_name = "public-ip"
-    frontend_port_name             = "https-port"
+    frontend_port_name             = "https-port"  # 🔹 Matches the `frontend_port` above
     protocol                       = "Https"
     ssl_certificate_name           = "appgw-cert"
   }
@@ -56,7 +55,7 @@ resource "azurerm_application_gateway" "gateway" {
     name                       = "routing-rule"
     rule_type                  = "Basic"
     http_listener_name         = "https-listener"
-    backend_address_pool_name  = "app-backend-pool"
+    backend_address_pool_name  = "app2-pe"
     backend_http_settings_name = "http-settings"
   }
 }
