@@ -37,27 +37,26 @@ resource "azurerm_application_gateway" "gateway" {
   }
 
   backend_http_settings {
-    name                  = local.http_setting_name
+   name                  = "http-settings"
     cookie_based_affinity = "Disabled"
-    path                  = "/path1/"
-    port                  = 80
-    protocol              = "Http"
-    request_timeout       = 60
+    port                  = 443
+    protocol              = "Https"
+    request_timeout       = 20
   }
 
   http_listener {
-    name                           = local.listener_name
-    frontend_ip_configuration_name = local.frontend_ip_configuration_name
-    frontend_port_name             = local.frontend_port_name
-    protocol                       = "Http"
+     name                           = "https-listener"
+    frontend_ip_configuration_name = "appgw-frontend-ip"
+    frontend_port_name             = "https-port"
+    protocol                       = "Https"
+    ssl_certificate_name           = "appgw-cert"
   }
 
   request_routing_rule {
-    name                       = local.request_routing_rule_name
-    priority                   = 9
+    name                       = "routing-rule"
     rule_type                  = "Basic"
-    http_listener_name         = local.listener_name
-    backend_address_pool_name  = local.backend_address_pool_name
-    backend_http_settings_name = local.http_setting_name
+    http_listener_name         = "https-listener"
+    backend_address_pool_name  = "app-backend-pool"
+    backend_http_settings_name = "http-settings"
   }
 }
