@@ -92,6 +92,15 @@ app_settings = {
   "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.app_insights.connection_string
     "APPINSIGHTS_INSTRUMENTATIONKEY"        = azurerm_application_insights.app_insights.instrumentation_key
 }
+ lifecycle {
+    ignore_changes = [
+      storage_account_access_key,
+      site_config,
+      app_settings,
+      virtual_network_subnet_id,
+      public_network_access_enabled
+    ]
+  }
 }
     
 # Function App 2
