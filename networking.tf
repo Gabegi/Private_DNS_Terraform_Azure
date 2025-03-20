@@ -86,7 +86,10 @@ resource "azurerm_subnet" "subnet5" {
 
   #   service_delegation {
   #     name = "Microsoft.Network/virtualNetworkGateways"
-  #     actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
+  #     actions = [
+  # "Microsoft.Network/virtualNetworks/subnets/action",
+  # "Microsoft.Network/virtualNetworks/subnets/join/action", 
+  # "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
   #   }
   # }
 }
