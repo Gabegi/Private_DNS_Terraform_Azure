@@ -92,7 +92,6 @@ app_settings = {
   "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.app_insights.connection_string
     "APPINSIGHTS_INSTRUMENTATIONKEY"        = azurerm_application_insights.app_insights.instrumentation_key
 }
-
 }
     
 # Function App 2
