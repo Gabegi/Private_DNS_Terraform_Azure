@@ -16,7 +16,10 @@ resource "azurerm_subnet" "subnet1" {
 
     service_delegation {
       name    = "Microsoft.Web/serverFarms"
-      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/action",
+        "Microsoft.Network/virtualNetworks/subnets/join/action", 
+        "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
     }
   }
 }
@@ -34,7 +37,10 @@ resource "azurerm_subnet" "subnet2" {
 
     service_delegation {
       name    = "Microsoft.Web/serverFarms"
-      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/action",
+        "Microsoft.Network/virtualNetworks/subnets/join/action", 
+        "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
     }
   }
 }
@@ -61,7 +67,10 @@ resource "azurerm_subnet" "subnet4" {
 
     service_delegation {
       name    = "Microsoft.Web/serverFarms"
-      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action", "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/action",
+        "Microsoft.Network/virtualNetworks/subnets/join/action", 
+        "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action"]
     }
   }
 }
