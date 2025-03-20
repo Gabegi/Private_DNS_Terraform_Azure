@@ -73,13 +73,12 @@ resource "azurerm_subnet" "subnet5" {
   address_prefixes     = ["10.0.5.0/24"]
 
   delegation {
-    name = "delegation"
+    name = "gatewayDelegation"
 
     service_delegation {
-      name = "Microsoft.Network/virtualNetworks"
+      name = "Microsoft.Network/virtualNetworkGateways"
       actions = [
-        "Microsoft.Network/virtualNetworks/subnets/action",
-        "Microsoft.Network/virtualNetworks/subnets/join/action"
+        "Microsoft.Network/virtualNetworkGateways/join/action"
       ]
     }
   }
