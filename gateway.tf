@@ -1,4 +1,4 @@
-resource "azurerm_public_ip" "ip" {
+resource "azurerm_public_ip" "gw-ip" {
   name                = "dns-pip"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
@@ -28,7 +28,7 @@ resource "azurerm_application_gateway" "gateway" {
 
   frontend_ip_configuration {
     name                 = "public-ip"
-    public_ip_address_id = azurerm_public_ip.ip.id
+    public_ip_address_id = azurerm_public_ip.gw-ip.id
   }
 
   backend_address_pool {
