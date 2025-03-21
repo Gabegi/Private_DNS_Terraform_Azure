@@ -47,6 +47,5 @@ Using an http client
 https://dns-app2.azurewebsites.net/api/ReceiveCall?code=xxxx"
 ```
 
-Or publish directly in Visual Studio
 
 
