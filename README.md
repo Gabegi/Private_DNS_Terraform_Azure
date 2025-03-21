@@ -28,15 +28,8 @@ Navigate to the repo and run:
 - terraform apply -auto-approve -var-file="vars/values.tfvars" 
 - terraform destroy -var-file="vars/values.tfvars"
 
-For testing:
-- navigate to the src repo, to Application_1 and replace xxxx with the dns-app2 Function App Key (found in Azure)
-```
-https://dns-app2.azurewebsites.net/api/ReceiveCall?code=xxxx"
-```
-
-Or publish directly in Visual Studio
-
-Call app
+## Testing
+Using Ssh
 
 ```
 curl -o response.html https://dns-app2.azurewebsites.net
@@ -45,4 +38,15 @@ curl -w "\nHTTP Status Code: %{http_code}\n" -o response.html https://dns-app2.a
  tracert -d dns-app2.azurewebsites.net
 
 ```
+
+
+
+Using an http client
+- navigate to the src repo, to Application_1 and replace xxxx with the dns-app2 Function App Key (found in Azure)
+```
+https://dns-app2.azurewebsites.net/api/ReceiveCall?code=xxxx"
+```
+
+Or publish directly in Visual Studio
+
 
