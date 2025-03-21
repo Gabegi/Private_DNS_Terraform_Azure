@@ -7,6 +7,7 @@ It leverages the following services:
 - private endpoints
 - private links
 - private dns zone
+- private dns network link
 - network security groups
 
 ## Architecture
