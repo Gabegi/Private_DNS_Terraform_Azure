@@ -1,10 +1,23 @@
-# Private_DNS_Terraform
-This repo showcases a simple example on how to set-up a private DNS Zone in Azure using Terraform Code.
+# Application Network Security in Azure
+This repo showcases a simple example on how to set-up networking security for an application in Azure.
 
-You need to add a folder vars and add the tfvars file in there.
+It leverages the following services:
+- vnet
+- subnet
+- private endpoints
+- private links
+- private dns zone
+- network security groups
 
+## Architecture
 Here's what we are building.
 ![Architecture](architecture.jpeg)
+
+## Getting started
+
+You need to add a folder called vars and add a tfvars file in there.
+
+
 
 Potential improvement is to use modules
 
