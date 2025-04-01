@@ -1,5 +1,5 @@
 # Application Network Security in Azure
-This repo showcases a simple example on how to set-up networking security for an application in Azure.
+This repo showcases a simple example on how to set-up networking security for an application hosted in Azure.
 
 It leverages the following services:
 - vnet
